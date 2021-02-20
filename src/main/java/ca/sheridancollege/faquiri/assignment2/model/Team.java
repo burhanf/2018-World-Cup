@@ -3,12 +3,14 @@ package ca.sheridancollege.faquiri.assignment2.model;
 
 import lombok.*;
 
+import java.io.Serializable;
+
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 @RequiredArgsConstructor
+@NoArgsConstructor
 
-public class Team {
+public class Team implements Serializable {
     private Long teamID;
     @NonNull
 
@@ -19,7 +21,17 @@ public class Team {
     private int numDrawnGames;
     private int numLostGames;
 
-    private int points = (3 * numWonGames) + numDrawnGames;
+    private int points;
 
 
+    public Team(long teamID, String teamName, String continent, int played, int won, int drawn, int lost) {
+        this.teamID = teamID;
+        this.teamName = teamName;
+        this.continent = continent;
+        this.numPlayedGames = played;
+        this.numWonGames = won;
+        this.numDrawnGames = drawn;
+        this.numLostGames = lost;
+        this.points =  (3 * numWonGames) + numDrawnGames;
+    }
 }
