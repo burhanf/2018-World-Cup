@@ -18,7 +18,7 @@ public class DatabaseAccess {
     //1.05
     MapSqlParameterSource namedParameters = new MapSqlParameterSource();
 
-    //add team
+    //CREATE: add team
     public void addTeam(Team newTeam){
         String query = "INSERT INTO Teams (TeamName, Continent, Played, Won, Drawn, Lost) VALUES (:name, :continent, :gamesPlayed, :wins, :draws, :losses)";
 
@@ -34,7 +34,7 @@ public class DatabaseAccess {
 
     }
 
-    //get teams query
+    //READ: get teams query
     public List<Team> getTeams(){
         String query = "SELECT * FROM Teams";
 
@@ -49,5 +49,16 @@ public class DatabaseAccess {
 //        });
         //todo fix bean property row mapper
         return jdbc.query(query, namedParameters, new BeanPropertyRowMapper<Team>(Team.class));
+    }
+
+    //UPDATE
+
+    //DELETE
+    public void deleteTeamById(Long id){
+        String query = "DELETE FROM Teams WHERE TeamID = :id";
+
+        namedParameters.addValue("id", id);
+
+        jdbc.update(query,namedParameters);
     }
 }

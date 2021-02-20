@@ -5,10 +5,7 @@ import ca.sheridancollege.faquiri.assignment2.model.Team;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -20,6 +17,8 @@ public class TeamController {
     @Autowired
     DatabaseAccess da; //global variable for DatabaseAccess so we can use it in different methods of controller
 
+    ModelAndView mv;
+
     //home page
     @GetMapping("/")
     public String home(){
@@ -27,15 +26,7 @@ public class TeamController {
         return "home";
     }
 
-    //2. in addTeam.html, it calls processTeam in the action
-    @PostMapping("/processTeam")
-    public String processTeam(@ModelAttribute Team team){
-        da.addTeam(team);
-
-        return "redirect:/addNewTeam";
-    }
-
-
+    //CREATE
     //1. from home, goes to add team where it passes in a empty object and returns "addTeam.html:
     //@RequestParam String teamName, @RequestParam String continent, @RequestParam int gamesPlayed, @RequestParam int wins, @RequestParam int draws, @RequestParam int losses
     //add a team
@@ -50,11 +41,15 @@ public class TeamController {
 
         return new ModelAndView("addTeam", "team", newTeam);
     }
+    //2. in addTeam.html, it calls processTeam in the action
+    @PostMapping("/processTeam")
+    public String processTeam(@ModelAttribute Team team){
+        da.addTeam(team);
 
-    //edit a team
+        return "redirect:/addNewTeam";
+    }
 
-    //delete a team
-
+    //READ
     //display all teams
     @GetMapping("/displayTeams")
     public ModelAndView display(){
@@ -63,5 +58,33 @@ public class TeamController {
         //
 
         return new ModelAndView("displayResults", "teams", da.getTeams());
+    }
+
+
+    //UPDATE
+    //edit a team
+
+    //DELETE
+    //delete a team
+    //2 parts, load the page with all teams like displayTeams
+    @GetMapping("/delete")
+    public ModelAndView delete(){
+        //load the delete page with all of the teams
+
+        return new ModelAndView("deleteTeam", "teams", da.getTeams());
+    }
+
+    //mapping for the actual record thats to be deleted
+    @GetMapping("/deleteTeamById/{id}")
+    public ModelAndView deleteTeam(@PathVariable Long id){
+
+        //pass in id to method in DatabaseAcess
+        da.deleteTeamById(id);
+
+        //data is changed so need to refresh database
+        mv = new ModelAndView("redirect:/delete", "teams", da.getTeams());
+
+        //no empty student needed since we make one in the home page
+        return mv;
     }
 }

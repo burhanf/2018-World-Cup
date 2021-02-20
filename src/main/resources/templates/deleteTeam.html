@@ -5,6 +5,31 @@
     <title>Delete Team</title>
 </head>
 <body>
+<table class="displayTeams">
+    <tr>
+        <td>Team ID</td>
+        <td>Team (Country)</td>
+        <td>Continent</td>
+        <td>Games Played</td>
+        <td>Games Won</td>
+        <td>Games Drawn</td>
+        <td>Games Lost</td>
+        <td>Total Points</td>
+    </tr>
 
+    <th:block th:each="t:${teams}">
+        <tr>
+            <td th:text="${t.teamID}" ></td>
+            <td th:text="${t.teamName}" ></td>
+            <td th:text="${t.continent}" ></td>
+            <td th:text="${t.played}" ></td>
+            <td th:text="${t.won}" ></td>
+            <td th:text="${t.lost}" ></td>
+            <td th:text="${t.drawn}" ></td>
+            <td th:text="${t.calculatePoints()}" ></td>
+            <td><a th:href="@{'deleteTeamById/' + ${t.teamID}}">DELETE</a></td>
+        </tr>
+    </th:block>
+</table>
 </body>
 </html>
