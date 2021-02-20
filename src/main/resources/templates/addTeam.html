@@ -6,6 +6,10 @@
 </head>
 <body>
 <!--This page contains a web form to enter the data for a new team as follows:-->
+<div>
+    <th:block th:insert="supplement.html :: header"></th:block>
+</div>
+
 <form method="post" th:action="@{/processTeam}" th:object="${team}">
     <table>
         <input value="0" type="hidden" th:field="*{teamID}">
@@ -33,6 +37,6 @@
     </table>
 </form>
 
-
+<footer th:replace="supplement.html :: footer"></footer>
 </body>
 </html>

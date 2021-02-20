@@ -7,6 +7,10 @@
 </head>
 <body>
 <!--This page would list all teams in a nicely styled table.-->
+<div>
+    <th:block th:insert="supplement.html :: header"></th:block>
+</div>
+
 <table class="displayTeams">
     <tr>
         <td>Team ID</td>
@@ -33,5 +37,6 @@
     </th:block>
 </table>
 
+<footer th:replace="supplement.html :: footer"></footer>
 </body>
 </html>

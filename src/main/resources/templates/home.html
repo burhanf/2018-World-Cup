@@ -5,9 +5,10 @@
     <title>Home</title>
 </head>
 <body>
-<a th:href="@{displayTeams}">All teams</a>
-<a th:href="@{addNewTeam}">Add team</a>
-<!--<a th:href="displayResults.html">Edit teams</a>-->
-<a th:href="@{delete}">Delete teams</a>
+<div>
+    <th:block th:insert="supplement.html :: header"></th:block>
+</div>
+
+<footer th:replace="supplement.html :: footer"></footer>
 </body>
 </html>
