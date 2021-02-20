@@ -1,17 +1,16 @@
 package ca.sheridancollege.faquiri.assignment2.model;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 @RequiredArgsConstructor
+
 public class Team {
-    @NonNull
     private Long teamID;
+    @NonNull
 
     private String teamName;
     private String continent;

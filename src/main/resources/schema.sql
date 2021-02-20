@@ -1,10 +1,9 @@
 CREATE TABLE Teams(
   TeamID LONG PRIMARY KEY AUTO_INCREMENT,
-  TeamName (NVARCHAR),
-  Continent (NVARCHAR),
-  Played (INT),
-  Won (INT),
-  Drawn (INT),
-  Lost (INT)
-
+  TeamName NVARCHAR,
+  Continent NVARCHAR,
+  Played INTEGER,
+  Won INTEGER,
+  Drawn INTEGER,
+  Lost INTEGER
 );

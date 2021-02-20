@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Display Results</title>
+    <link rel="stylesheet" th:href="@{/static/styles.css}">
+</head>
+<body>
+<!--This page would list all teams in a nicely styled table.-->
+<table class="displayTeams">
+    <tr>
+        <td>Team ID</td>
+        <td>Team (Country))</td>
+        <td>Continent</td>
+        <td>Games Played</td>
+        <td>Games Won</td>
+        <td>Games Drawn</td>
+        <td>Games Lost</td>
+        <td>Total Points</td>
+    </tr>
+
+    <th:block th:each="t:${teams}">
+        <tr>
+            <td th:text="${t.teamID}" ></td>
+            <td th:text="${t.teamName}" ></td>
+            <td th:text="${t.continent}" ></td>
+            <td th:text="${t.numPlayedGames}" ></td>
+            <td th:text="${t.numWonGames}" ></td>
+            <td th:text="${t.numLostGames}" ></td>
+            <td th:text="${t.numDrawnGames}" >55</td>
+            <td th:text="${t.points}" ></td>
+        </tr>
+    </th:block>
+</table>
+
+</body>
+</html>
