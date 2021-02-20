@@ -16,24 +16,27 @@ public class Team implements Serializable {
 
     private String teamName;
     private String continent;
-    private int numPlayedGames;
-    private int numWonGames;
-    private int numDrawnGames;
-    private int numLostGames;
-
-    private int points;
+    private int played;
+    private int won;
+    private int drawn;
+    private int lost;
 
 
-    public Team(long teamID, String teamName, String continent, int played, int won, int drawn, int lost) {
-        this.teamID = teamID;
-        this.teamName = teamName;
-        this.continent = continent;
-        this.numPlayedGames = played;
-        this.numWonGames = won;
-        this.numDrawnGames = drawn;
-        this.numLostGames = lost;
-
-        //With the new system, the points allocation is simpler: three points for a win, one point for a draw, and zero points for a loss
-        this.points =  (3 * numWonGames) + numDrawnGames;
+    public int calculatePoints(){
+        return ( 3 * won) + drawn;
     }
+
+
+//    public Team(long teamID, String teamName, String continent, int played, int won, int drawn, int lost) {
+//        this.teamID = teamID;
+//        this.teamName = teamName;
+//        this.continent = continent;
+//        this.numPlayedGames = played;
+//        this.numWonGames = won;
+//        this.numDrawnGames = drawn;
+//        this.numLostGames = lost;
+//
+//        //With the new system, the points allocation is simpler: three points for a win, one point for a draw, and zero points for a loss
+//        this.points =  (3 * numWonGames) + numDrawnGames;
+//    }
 }

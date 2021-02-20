@@ -24,11 +24,11 @@
             <td th:text="${t.teamID}" ></td>
             <td th:text="${t.teamName}" ></td>
             <td th:text="${t.continent}" ></td>
-            <td th:text="${t.numPlayedGames}" ></td>
-            <td th:text="${t.numWonGames}" ></td>
-            <td th:text="${t.numLostGames}" ></td>
-            <td th:text="${t.numDrawnGames}" >55</td>
-            <td th:text="${t.points}" ></td>
+            <td th:text="${t.played}" ></td>
+            <td th:text="${t.won}" ></td>
+            <td th:text="${t.lost}" ></td>
+            <td th:text="${t.drawn}" >55</td>
+            <td th:text="${t.calculatePoints()}" ></td>
         </tr>
     </th:block>
 </table>
