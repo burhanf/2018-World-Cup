@@ -19,11 +19,26 @@ public class DatabaseAccess {
     @Autowired
     NamedParameterJdbcTemplate jdbc;
     //1.05
+    MapSqlParameterSource namedParameters = new MapSqlParameterSource();
+
+    //add team
+    public void addTeam(Team newTeam){
+        String query = "INSERT INTO Teams (TeamName, Continent, Played, Won, Drawn, Lost) VALUES (:name, :continent, :gamesPlayed, :wins, :draws, :losses)";
+
+        namedParameters.addValue("name", newTeam.getTeamName());
+        namedParameters.addValue("continent", newTeam.getContinent());
+        namedParameters.addValue("gamesPlayed", newTeam.getNumPlayedGames());
+        namedParameters.addValue("wins", newTeam.getNumWonGames());
+        namedParameters.addValue("draws", newTeam.getNumDrawnGames());
+        namedParameters.addValue("losses", newTeam.getNumLostGames());
+
+        //update the database
+        jdbc.update(query, namedParameters);
+
+    }
 
     //get teams query
     public List<Team> getTeams(){
-        MapSqlParameterSource namedParameters = new MapSqlParameterSource();
-
         String query = "SELECT * FROM Teams";
 
         //Reference: https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/jdbc/core/RowMapper.html

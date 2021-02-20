@@ -32,6 +32,8 @@ public class Team implements Serializable {
         this.numWonGames = won;
         this.numDrawnGames = drawn;
         this.numLostGames = lost;
+
+        //With the new system, the points allocation is simpler: three points for a win, one point for a draw, and zero points for a loss
         this.points =  (3 * numWonGames) + numDrawnGames;
     }
 }
