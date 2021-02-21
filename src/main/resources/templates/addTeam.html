@@ -28,10 +28,10 @@
         <option value="Australia">Oceania</option>
         </select>
         </td></tr>
-    <tr><td>Games played</td><td><input type="number" th:field="*{played}"></td></tr>
-    <tr><td>Num wins</td><td><input type="number" th:field="*{won}"></td></tr>
-    <tr><td>Num draws</td><td><input type="number" th:field="*{drawn}"></td></tr>
-    <tr><td>Num losses</td><td><input type="number" th:field="*{lost}"></td></tr>
+    <tr><td>Games played</td><td><input type="number" th:field="*{played}" min="0"></td></tr>
+    <tr><td>Num wins</td><td><input type="number" th:field="*{won}" min="0"></td></tr>
+    <tr><td>Num draws</td><td><input type="number" th:field="*{drawn}" min="0"></td></tr>
+    <tr><td>Num losses</td><td><input type="number" th:field="*{lost}" min="0"></td></tr>
         <tr>
             <td colspan="2"><input type="submit" value="Add team"></td>
         </tr>
