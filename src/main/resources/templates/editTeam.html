@@ -11,7 +11,7 @@
 </div>
 <!--table for user to see which team to edit-->
 <table class="displayTeams">
-    <tr>
+    <tr class="columnInfo">
         <td>Team ID</td>
         <td>Team (Country)</td>
         <td>Continent</td>
@@ -23,10 +23,10 @@
     </tr>
 
     <th:block th:each="t:${teams}">
-        <tr>
+        <tr class="teamData">
             <td th:text="${t.teamID}" ></td>
-            <td th:text="${t.teamName}" ></td>
-            <td th:text="${t.continent}" ></td>
+            <td th:text="${t.teamName}" ></td> <!--index of 1-->
+            <td th:text="${t.continent}" ></td> <!--index of 2-->
             <td th:text="${t.played}" ></td>
             <td th:text="${t.won}" ></td>
             <td th:text="${t.lost}" ></td>
@@ -37,6 +37,53 @@
     </th:block>
 </table>
 
+<input id="editSearchBox" type="text" placeholder="Enter a team or continent">
+
 <footer th:replace="supplement.html :: footer"></footer>
+
+<script>
+    //JavaScript for the dynamic search box
+    /*user can search for a team (country) or teams in a specific continent using its
+    (their) full or partial name(s). The upper part list needs to dynamically get updates and refreshed based on the search results.
+     */
+
+    //use javascript once the DOM is loaded
+    window.addEventListener("DOMContentLoaded", function(){
+
+        //store the search box in a var
+        var searchBox = document.getElementById("editSearchBox");
+
+        //store all tr in a var array
+        var tableRows = document.getElementsByClassName("teamData"); //[]
+
+        //add event to the search box
+        searchBox.addEventListener("input", function(){
+            //callback function since its only being executed once
+            //iterate thru the array and check if it contains the search
+            for (i = 0; i < tableRows.length; i++){
+                //store the table data in a variable for easier reading
+                //todo lowercase for case sensitive
+                var teamNameData = tableRows[i].getElementsByTagName("td")[1].textContent.toLowerCase(); //team name is index 1 of the td
+                var continentData = tableRows[i].getElementsByTagName("td")[2].textContent.toLowerCase(); //team name is index 2 of the td
+
+                //check if the current tableRow td[1] or [2] which is team name or continent starts with the user search query
+                if ( (teamNameData.startsWith( searchBox.value.toString().toLowerCase() ) ) ||
+                    continentData.startsWith( searchBox.value.toString().toLowerCase() )){
+                    tableRows[i].style.display = ""; //leave it visible
+                }
+                else{
+                    //if not, display=none
+                    tableRows[i].style.display = "none";
+                }
+
+
+            }
+        });
+
+
+    });
+
+
+</script>
 </body>
 </html>
