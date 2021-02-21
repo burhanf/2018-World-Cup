@@ -12,7 +12,7 @@
 </div>
 
 <table class="displayTeams">
-    <tr>
+    <tr class="columnInfo">
         <td>Team ID</td>
         <td>Team (Country)</td>
         <td>Continent</td>
@@ -24,7 +24,7 @@
     </tr>
 
     <th:block th:each="t:${teams}">
-        <tr>
+        <tr class="teamData">
             <td th:text="${t.teamID}" ></td>
             <td th:text="${t.teamName}" ></td>
             <td th:text="${t.continent}" ></td>
