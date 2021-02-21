@@ -3,12 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
-<div>
-    <th:block th:insert="supplement.html :: header"></th:block>
+<div class="root">
+    <div>
+        <th:block th:insert="supplement.html :: header"></th:block>
+    </div>
+
+    <footer th:replace="supplement.html :: footer"></footer>
 </div>
 
-<footer th:replace="supplement.html :: footer"></footer>
 </body>
 </html>

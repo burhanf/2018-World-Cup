@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
     <title>Header and Footer fragment</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
-<div th:fragment="header">
+<div class="header" th:fragment="header">
     <table>
         <tr>
             <td><a th:href="@{/}">Home</a></td>
@@ -19,6 +20,6 @@
 </div>
 <!-- YOUR_FULL_NAME to be replaced with your actual name  -->
 <!-- use this throughout the assignment -->
-<footer th:fragment="footer">&copy; 2021 by BURHAN FAQUIRI. All rights reserved.</footer>
+<footer class="footer" th:fragment="footer">&copy; 2021 by BURHAN FAQUIRI. All rights reserved.</footer>
 </body>
 </html>

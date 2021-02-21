@@ -1,0 +1,20 @@
+.header{
+    background: #0F317B;
+    color: #DBBD7F;
+    font-family: sans-serif;
+}
+
+.footer{
+    background: #0F317B;
+    color: white;
+    font-family: sans-serif;
+}
+
+a:visited, a{
+    color: #DBBD7F;
+    text-decoration: none;
+}
+
+.root{
+    color: #0F317B;
+}
