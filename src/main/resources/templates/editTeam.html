@@ -8,6 +8,33 @@
 <div>
     <th:block th:insert="supplement.html :: header"></th:block>
 </div>
+<!--table for user to see which team to edit-->
+<table class="displayTeams">
+    <tr>
+        <td>Team ID</td>
+        <td>Team (Country)</td>
+        <td>Continent</td>
+        <td>Played</td>
+        <td>Won</td>
+        <td>Drawn</td>
+        <td>Lost</td>
+        <td>Points</td>
+    </tr>
+
+    <th:block th:each="t:${teams}">
+        <tr>
+            <td th:text="${t.teamID}" ></td>
+            <td th:text="${t.teamName}" ></td>
+            <td th:text="${t.continent}" ></td>
+            <td th:text="${t.played}" ></td>
+            <td th:text="${t.won}" ></td>
+            <td th:text="${t.lost}" ></td>
+            <td th:text="${t.drawn}" ></td>
+            <td th:text="${t.calculatePoints()}" ></td>
+            <td><a th:href="@{'editTeamById/' + ${t.teamID}}">EDIT</a></td>
+        </tr>
+    </th:block>
+</table>
 
 <footer th:replace="supplement.html :: footer"></footer>
 </body>

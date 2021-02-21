@@ -34,7 +34,7 @@ public class DatabaseAccess {
 
     }
 
-    //READ: get teams query
+    //READ: get teams query, greabs all of the teams
     public List<Team> getTeams(){
         String query = "SELECT * FROM Teams";
 
@@ -51,7 +51,30 @@ public class DatabaseAccess {
         return jdbc.query(query, namedParameters, new BeanPropertyRowMapper<Team>(Team.class));
     }
 
-    //UPDATE
+    //UPDATE: Update a user, update all fields
+    public void updateTeamById(Team updatedTeam){
+        String query = "UPDATE Teams SET TeamName = :name, Continent = :continent, Played = :gamesPlayed, Won = :wins, Drawn = :draws, Lost = :losses WHERE TeamID = :id";
+
+        namedParameters.addValue("id", updatedTeam.getTeamID());
+        namedParameters.addValue("name", updatedTeam.getTeamName());
+        namedParameters.addValue("continent", updatedTeam.getContinent());
+        namedParameters.addValue("gamesPlayed", updatedTeam.getPlayed());
+        namedParameters.addValue("wins", updatedTeam.getWon());
+        namedParameters.addValue("draws", updatedTeam.getDrawn());
+        namedParameters.addValue("losses", updatedTeam.getLost());
+
+        jdbc.update(query, namedParameters);
+
+    }
+
+    //Grab a specific team
+    public List<Team> getTeamById(Long id){
+        String query = "SELECT * FROM Teams WHERE TeamID = :id";
+        namedParameters.addValue("id", id);
+
+        return jdbc.query(query, namedParameters, new BeanPropertyRowMapper<Team>(Team.class));
+    }
+
 
     //DELETE
     public void deleteTeamById(Long id){

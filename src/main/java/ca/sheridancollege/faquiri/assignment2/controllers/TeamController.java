@@ -63,6 +63,32 @@ public class TeamController {
 
     //UPDATE
     //edit a team
+    //1. load page so user sees all teams to edit
+    @GetMapping("/edit")
+    public ModelAndView edit(){
+        //pass in the teams to the edit page to see all of them
+        return new ModelAndView("editTeam", "teams", da.getTeams());
+    }
+
+    //2. grab the team to edit and put it to a add team type page
+    @GetMapping("editTeamById/{id}")
+    public ModelAndView editTeam(@PathVariable Long id){
+        //construct the team before its edited to pass into the process edit page
+        Team team = da.getTeamById(id).get(0); //since a list is returned, we only want the first element
+
+        //pass in the team to be modified to the editTeamDetails page
+        return new ModelAndView("editTeamDetails", "editedTeam", team);
+    }
+
+
+    //3.carry the updated team object into the database
+    @PostMapping("/processEdit")
+    public String processEdit(@ModelAttribute Team editedTeam){
+        //grab the updated details of the team and apply it in the database
+        da.updateTeamById(editedTeam);
+
+        return "redirect:/edit";
+    }
 
     //DELETE
     //delete a team

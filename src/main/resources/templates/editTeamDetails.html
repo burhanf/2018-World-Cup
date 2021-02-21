@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Team Details</title>
+</head>
+<body>
+<!--This page contains a web form to enter the data for the team to edit:-->
+<div>
+    <th:block th:insert="supplement.html :: header"></th:block>
+</div>
+
+<form method="post" th:action="@{/processEdit}" th:object="${editedTeam}">
+    <table>
+        <input value="0" type="hidden" th:field="*{teamID}">
+<!--        th:default="${teamID}"-->
+<!--        th:default="${team.teamName}"-->
+<!--        th:default="${team.continent}"-->
+<!--        th:default="${team.played}"-->
+<!--th:default="${team.won}"-->
+<!--        th:default="${team.drawn}"-->
+<!--         th:default="${team.lost}"
+-->
+    <tr><td>Team Name</td><td><input type="text" th:field="*{teamName}" ></td></tr>
+
+    <tr><td>Continent</td>
+        <td>
+        <select type="text" th:field="*{continent}" >
+        <option value="N. America">N. America</option>
+        <option value="S. America">S. America</option>
+        <option value="Europe">Europe</option>
+        <option value="Asia">Asia</option>
+        <option value="Africa">Africa</option>
+        <option value="Australia">Australia</option>
+        </select>
+        </td></tr>
+    <tr><td>Games played</td><td><input type="number" th:field="*{played}" ></td></tr>
+    <tr><td>Num wins</td><td><input type="number" th:field="*{won}" ></td></tr>
+    <tr><td>Num draws</td><td><input type="number" th:field="*{drawn}" ></td></tr>
+    <tr><td>Num losses</td><td><input type="number" th:field="*{lost}"></td></tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Apply edits to team"></td>
+        </tr>
+    </table>
+</form>
+
+<footer th:replace="supplement.html :: footer"></footer>
+</body>
+</html>
