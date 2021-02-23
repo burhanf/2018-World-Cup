@@ -7,12 +7,54 @@
 </head>
 <body>
 <div class="root">
-    <div>
+    <div class="homeHeader">
         <th:block th:insert="supplement.html :: header"></th:block>
     </div>
 
-    <footer th:replace="supplement.html :: footer"></footer>
+    <div class="trophy">
+        <img id="trophyImage" src="/images/trophy.png">
+    </div>
+
+    <div class="appTitle">
+        <h1>2018 FIFA World Cup</h1>
+        <h5>Click on the trophy to randomly change the image!</h5>
+    </div>
+
+    <div class="photoGallery">
+        <img id="galleryImage" src="/images/6.jpeg">
+    </div>
+
+    <div class="homeFooter">
+        <footer th:replace="supplement.html :: footer"></footer>
+    </div>
+
 </div>
 
+<script>
+    window.addEventListener("DOMContentLoaded", function (){
+       //attach a click event to the trophy image
+       let trophy = document.getElementById("trophy");
+       var imageNumber;
+       //var imageNumberArray = [0,1,2,3,4,5,6,7,8,9];
+
+       //store the gallery in a var
+        var gallery = document.getElementById("galleryImage");
+       document.images[0].addEventListener("click", function (){
+           console.log("click");
+           //choose a random number to change the image source\
+           imageNumber = Math.floor(Math.random() * 9);
+
+           console.log(imageNumber);
+
+           //todo take the current image out of the array so its not chosen again
+           // var tempArray = [...imageNumberArray];
+           // tempArray.splice(imageNumber, 1);
+
+           gallery.src = "images/" + imageNumber + ".jpeg";
+
+
+       });
+    });
+</script>
 </body>
 </html>
