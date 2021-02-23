@@ -22,7 +22,7 @@
 <!--        th:default="${team.drawn}"-->
 <!--         th:default="${team.lost}"
 -->
-    <tr><td>Team Name</td><td><input type="text" th:field="*{teamName}" ></td></tr>
+    <tr><td>Team Name</td><td><input type="text" th:field="*{teamName}" placeholder="Enter new team name"></td></tr>
 
     <tr><td>Continent</td>
         <td>
@@ -32,7 +32,7 @@
         <option value="Europe">Europe</option>
         <option value="Asia">Asia</option>
         <option value="Africa">Africa</option>
-        <option value="Australia">Oceania</option>
+        <option value="Oceania">Oceania</option>
         </select>
         </td></tr>
     <tr><td>Games played</td><td><input type="number" th:field="*{played}" min="0"></td></tr>

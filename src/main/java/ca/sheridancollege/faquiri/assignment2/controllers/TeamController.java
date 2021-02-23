@@ -52,12 +52,29 @@ public class TeamController {
     //READ
     //display all teams
     @GetMapping("/displayTeams")
-    public ModelAndView display(){
+    public ModelAndView display(@RequestParam(defaultValue = "1") int sortOption){
+        //grab result from user, need a request param
+
+        //pass in a parameter to the get teams that will do it by name, continent or points
+
         //go to the all teams page and pass in the list of all teams
 //        List<Team>t = da.getTeams();
         //
 
-        return new ModelAndView("displayResults", "teams", da.getTeams());
+        return new ModelAndView("displayResults", "teams", da.getTeams(sortOption));
+    }
+
+    @PostMapping("/displayTeamsSorted")
+    public ModelAndView displaySorted(@RequestParam int sortOption){
+        //grab result from user, need a request param
+
+        //pass in a parameter to the get teams that will do it by name, continent or points
+
+        //go to the all teams page and pass in the list of all teams
+       List<Team>t = da.getTeams(sortOption);
+        //
+
+        return new ModelAndView("displayResults", "teams", da.getTeams(sortOption));
     }
 
 
@@ -67,7 +84,7 @@ public class TeamController {
     @GetMapping("/edit")
     public ModelAndView edit(){
         //pass in the teams to the edit page to see all of them
-        return new ModelAndView("editTeam", "teams", da.getTeams());
+        return new ModelAndView("editTeam", "teams", da.getTeams(1));
     }
 
     //2. grab the team to edit and put it to a add team type page
@@ -97,7 +114,7 @@ public class TeamController {
     public ModelAndView delete(){
         //load the delete page with all of the teams
 
-        return new ModelAndView("deleteTeam", "teams", da.getTeams());
+        return new ModelAndView("deleteTeam", "teams", da.getTeams(1));
     }
 
     //mapping for the actual record thats to be deleted
@@ -108,7 +125,7 @@ public class TeamController {
         da.deleteTeamById(id);
 
         //data is changed so need to refresh database
-        mv = new ModelAndView("redirect:/delete", "teams", da.getTeams());
+        mv = new ModelAndView("redirect:/delete", "teams", da.getTeams(1));
 
         //no empty student needed since we make one in the home page
         return mv;

@@ -29,8 +29,8 @@
             <td th:text="${t.continent}" ></td> <!--index of 2-->
             <td th:text="${t.played}" ></td>
             <td th:text="${t.won}" ></td>
-            <td th:text="${t.lost}" ></td>
             <td th:text="${t.drawn}" ></td>
+            <td th:text="${t.lost}" ></td>
             <td th:text="${t.calculatePoints()}" ></td>
             <td><a th:href="@{'editTeamById/' + ${t.teamID}}">EDIT</a></td>
         </tr>

@@ -37,6 +37,25 @@
     </th:block>
 </table>
 
+<!--radio group for choices-->
+<form method="post" th:action="@{/displayTeamsSorted}" >
+
+<div>
+<p>Sort table by:</p>
+<input type="radio" name="sortOption" value="1" id="teamName" checked>
+<label for="teamName">Team Name</label>
+
+<input type="radio" name="sortOption" value="2" id="continent">
+<label for="continent">Continent</label>
+
+<input type="radio" name="sortOption" value="3" id="points">
+<label for="points">Points</label>
+</div>
+
+    <input type="submit" value="Sort">
+</form>
+
+<!--<a th:href="@{displayTeamsSorted}">Sort</a>-->
 <footer th:replace="supplement.html :: footer"></footer>
 </body>
 </html>

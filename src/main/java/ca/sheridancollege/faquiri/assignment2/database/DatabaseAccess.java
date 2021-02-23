@@ -35,19 +35,21 @@ public class DatabaseAccess {
     }
 
     //READ: get teams query, greabs all of the teams
-    public List<Team> getTeams(){
-        String query = "SELECT * FROM Teams";
+    public List<Team> getTeams( int sortChoice){
+        String query = "";
+        switch (sortChoice){
+            case 1:
+                query = "SELECT * FROM Teams ORDER BY UPPER(TeamName) ASC"; //must make it upper case so its not case sensitive
+                break;
+            case 2:
+                query = "SELECT * FROM Teams ORDER BY UPPER(Continent) ASC";
+                break;
+            case 3:
+                query = "SELECT * FROM Teams ORDER BY ((3 * Won) + Drawn) DESC";
+                break;
 
-        //Reference: https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/jdbc/core/RowMapper.html
-//        return jdbc.query(query, namedParameters, new RowMapper<Team>() {
-//            @Override
-//            public Team mapRow(ResultSet resultSet, int i) throws SQLException {
-//                return new Team(resultSet.getLong("TeamID"), resultSet.getString("TeamName"),
-//                        resultSet.getString("Continent"), resultSet.getInt("Played"), resultSet.getInt("Won"),
-//                        resultSet.getInt("Drawn"), resultSet.getInt("Lost"));
-//            }
-//        });
-        //todo fix bean property row mapper
+        }
+
         return jdbc.query(query, namedParameters, new BeanPropertyRowMapper<Team>(Team.class));
     }
 
