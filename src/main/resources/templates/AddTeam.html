@@ -10,7 +10,7 @@
 <div>
 
 <div>
-    <th:block th:insert="supplement.html :: header"></th:block>
+    <th:block th:insert="Supplement.html :: header"></th:block>
 </div>
 
 <form method="post" th:action="@{/processTeam}" th:object="${team}">
@@ -21,13 +21,11 @@
 
     <tr><td>Continent</td>
         <td>
-        <select type="text" th:field="*{continent}">
-        <option value="N. America">N. America</option>
-        <option value="S. America">S. America</option>
-        <option value="Europe">Europe</option>
-        <option value="Asia">Asia</option>
-        <option value="Africa">Africa</option>
-        <option value="Australia">Oceania</option>
+
+        <select th:field="*{continent}">
+                <th:block th:each="c : ${continents}">
+                    <option th:value="${c}" th:text="${c}"></option>
+                </th:block>
         </select>
         </td></tr>
     <tr><td>Games played</td><td><input type="number" th:field="*{played}" min="0"></td></tr>
@@ -40,6 +38,6 @@
     </table>
 </form>
 </div>
-<footer th:replace="supplement.html :: footer"></footer>
+<footer th:replace="Supplement.html :: footer"></footer>
 </body>
 </html>

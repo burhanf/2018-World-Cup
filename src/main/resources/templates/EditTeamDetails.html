@@ -8,32 +8,21 @@
 <body>
 <!--This page contains a web form to enter the data for the team to edit:-->
 <div>
-    <th:block th:insert="supplement.html :: header"></th:block>
+    <th:block th:insert="Supplement.html :: header"></th:block>
 </div>
 
 <form method="post" th:action="@{/processEdit}" th:object="${editedTeam}">
     <table>
         <input value="0" type="hidden" th:field="*{teamID}">
-<!--        th:default="${teamID}"-->
-<!--        th:default="${team.teamName}"-->
-<!--        th:default="${team.continent}"-->
-<!--        th:default="${team.played}"-->
-<!--th:default="${team.won}"-->
-<!--        th:default="${team.drawn}"-->
-<!--         th:default="${team.lost}"
--->
     <tr><td>Team Name</td><td><input type="text" th:field="*{teamName}" placeholder="Enter new team name"></td></tr>
 
     <tr><td>Continent</td>
         <td>
-        <select type="text" th:field="*{continent}" >
-        <option value="N. America">N. America</option>
-        <option value="S. America">S. America</option>
-        <option value="Europe">Europe</option>
-        <option value="Asia">Asia</option>
-        <option value="Africa">Africa</option>
-        <option value="Oceania">Oceania</option>
-        </select>
+            <select th:field="*{continent}">
+                <th:block th:each="c : ${continents}">
+                    <option th:value="${c}" th:text="${c}"></option>
+                </th:block>
+            </select>
         </td></tr>
     <tr><td>Games played</td><td><input type="number" th:field="*{played}" min="0"></td></tr>
     <tr><td>Num wins</td><td><input type="number" th:field="*{won}" min="0"></td></tr>
@@ -45,6 +34,6 @@
     </table>
 </form>
 
-<footer th:replace="supplement.html :: footer"></footer>
+<footer th:replace="Supplement.html :: footer"></footer>
 </body>
 </html>

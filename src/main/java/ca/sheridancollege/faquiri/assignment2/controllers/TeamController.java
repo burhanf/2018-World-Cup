@@ -4,7 +4,6 @@ import ca.sheridancollege.faquiri.assignment2.database.DatabaseAccess;
 import ca.sheridancollege.faquiri.assignment2.model.Team;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -19,15 +18,17 @@ public class TeamController {
 
     ModelAndView mv;
 
+    public String continents[]={"N. America", "S. America", "Europe", "Asia", "Africa", "Oceania"}; //todo do this for continents
+
     //home page
     @GetMapping("/")
     public String home(){
 
-        return "home";
+        return "Home";
     }
 
     //CREATE
-    //1. from home, goes to add team where it passes in a empty object and returns "addTeam.html:
+    //1. from home, goes to add team where it passes in a empty object and returns "AddTeam.html:
     //@RequestParam String teamName, @RequestParam String continent, @RequestParam int gamesPlayed, @RequestParam int wins, @RequestParam int draws, @RequestParam int losses
     //add a team
     @GetMapping("/addNewTeam")
@@ -38,10 +39,11 @@ public class TeamController {
         //pass in empty team be filled out in form
         Team newTeam = new Team();
         //da.addTeam(newTeam);
-
-        return new ModelAndView("addTeam", "team", newTeam);
+        mv = new ModelAndView("AddTeam", "team", newTeam);
+        mv.addObject("continents", continents);
+        return mv;
     }
-    //2. in addTeam.html, it calls processTeam in the action
+    //2. in AddTeam.html, it calls processTeam in the action
     @PostMapping("/processTeam")
     public String processTeam(@ModelAttribute Team team){
         da.addTeam(team);
@@ -61,7 +63,7 @@ public class TeamController {
 //        List<Team>t = da.getTeams();
         //
 
-        return new ModelAndView("displayResults", "teams", da.getTeams(sortOption));
+        return new ModelAndView("DisplayResults", "teams", da.getTeams(sortOption));
     }
 
     @PostMapping("/displayTeamsSorted")
@@ -74,7 +76,7 @@ public class TeamController {
        List<Team>t = da.getTeams(sortOption);
         //
 
-        return new ModelAndView("displayResults", "teams", da.getTeams(sortOption));
+        return new ModelAndView("DisplayResults", "teams", da.getTeams(sortOption));
     }
 
 
@@ -84,7 +86,7 @@ public class TeamController {
     @GetMapping("/edit")
     public ModelAndView edit(){
         //pass in the teams to the edit page to see all of them
-        return new ModelAndView("editTeam", "teams", da.getTeams(1));
+        return new ModelAndView("EditTeam", "teams", da.getTeams(1));
     }
 
     //2. grab the team to edit and put it to a add team type page
@@ -94,7 +96,9 @@ public class TeamController {
         Team team = da.getTeamById(id).get(0); //since a list is returned, we only want the first element
 
         //pass in the team to be modified to the editTeamDetails page
-        return new ModelAndView("editTeamDetails", "editedTeam", team);
+        mv = new ModelAndView("EditTeamDetails", "editedTeam", team);
+        mv.addObject("continents", continents);
+        return mv;
     }
 
 
@@ -114,7 +118,7 @@ public class TeamController {
     public ModelAndView delete(){
         //load the delete page with all of the teams
 
-        return new ModelAndView("deleteTeam", "teams", da.getTeams(1));
+        return new ModelAndView("DeleteTeam", "teams", da.getTeams(1));
     }
 
     //mapping for the actual record thats to be deleted
