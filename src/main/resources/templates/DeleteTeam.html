@@ -32,7 +32,8 @@
             <td th:text="${t.drawn}" ></td>
             <td th:text="${t.lost}" ></td>
             <td th:text="${t.calculatePoints()}" ></td>
-            <td><a th:href="@{'deleteTeamById/' + ${t.teamID}}">DELETE</a></td>
+            <!--Reference: https://www.w3schools.com/jsref/met_win_confirm.asp-->
+            <td><a th:href="@{'deleteTeamById/' + ${t.teamID}}" onclick="return confirm('Please confirm that you would like to delete this record')">DELETE</a></td>
         </tr>
     </th:block>
 </table>
