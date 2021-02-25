@@ -6,10 +6,13 @@
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
+<div class="container">
 <!--This page would list all teams in a nicely styled table.-->
 <div>
     <th:block th:insert="Supplement.html :: header"></th:block>
 </div>
+
+
 
 <table class="displayTeams">
     <tr class="columnInfo">
@@ -40,7 +43,7 @@
 <!--radio group for choices-->
 <form method="post" th:action="@{/displayTeamsSorted}" >
 
-<div>
+<div class="sort" >
 <p>Sort table by:</p>
 <input type="radio" name="sortOption" value="1" id="teamName" checked>
 <label for="teamName">Team Name</label>
@@ -50,12 +53,11 @@
 
 <input type="radio" name="sortOption" value="3" id="points">
 <label for="points">Points</label>
-</div>
-
     <input type="submit" value="Sort">
+</div>
 </form>
 
-<!--<a th:href="@{displayTeamsSorted}">Sort</a>-->
+</div>
 <footer th:replace="Supplement.html :: footer"></footer>
 </body>
 </html>

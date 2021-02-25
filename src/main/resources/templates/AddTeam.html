@@ -7,36 +7,56 @@
 </head>
 <body>
 <!--This page contains a web form to enter the data for a new team as follows:-->
-<div>
+<div class="container">
 
-<div>
-    <th:block th:insert="Supplement.html :: header"></th:block>
-</div>
+    <div>
+        <th:block th:insert="Supplement.html :: header"></th:block>
+    </div>
 
-<form method="post" th:action="@{/processTeam}" th:object="${team}">
-    <table>
-        <input value="0" type="hidden" th:field="*{teamID}">
+    <div class="userInput">
+        <form method="post" th:action="@{/processTeam}" th:object="${team}">
+            <table>
+                <input value="0" type="hidden" th:field="*{teamID}">
 
-    <tr><td>Team Name</td><td><input type="text" th:field="*{teamName}" placeholder="Enter team name"></td></tr>
+                <tr>
+                    <td>Team Name</td>
+                    <td><input type="text" th:field="*{teamName}" placeholder="Enter team name"></td>
+                </tr>
 
-    <tr><td>Continent</td>
-        <td>
+                <tr>
+                    <td>Continent</td>
+                    <td>
 
-        <select th:field="*{continent}">
-                <th:block th:each="c : ${continents}">
-                    <option th:value="${c}" th:text="${c}"></option>
-                </th:block>
-        </select>
-        </td></tr>
-    <tr><td>Games played</td><td><input type="number" th:field="*{played}" min="0"></td></tr>
-    <tr><td>Num wins</td><td><input type="number" th:field="*{won}" min="0"></td></tr>
-    <tr><td>Num draws</td><td><input type="number" th:field="*{drawn}" min="0"></td></tr>
-    <tr><td>Num losses</td><td><input type="number" th:field="*{lost}" min="0"></td></tr>
-        <tr>
-            <td colspan="2"><input type="submit" value="Add team"></td>
-        </tr>
-    </table>
-</form>
+                        <select th:field="*{continent}">
+                            <th:block th:each="c : ${continents}">
+                                <option th:value="${c}" th:text="${c}"></option>
+                            </th:block>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Games played</td>
+                    <td><input type="number" th:field="*{played}" min="0"></td>
+                </tr>
+                <tr>
+                    <td>Num wins</td>
+                    <td><input type="number" th:field="*{won}" min="0"></td>
+                </tr>
+                <tr>
+                    <td>Num draws</td>
+                    <td><input type="number" th:field="*{drawn}" min="0"></td>
+                </tr>
+                <tr>
+                    <td>Num losses</td>
+                    <td><input type="number" th:field="*{lost}" min="0"></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="submit" value="Add team"></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
 </div>
 <footer th:replace="Supplement.html :: footer"></footer>
 </body>

@@ -18,7 +18,7 @@ public class TeamController {
 
     ModelAndView mv;
 
-    public String continents[]={"N. America", "S. America", "Europe", "Asia", "Africa", "Oceania"}; //todo do this for continents
+    public String continents[]={"N. America", "S. America", "Europe", "Asia", "Africa", "Oceania"};
 
     //home page
     @GetMapping("/")

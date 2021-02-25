@@ -6,11 +6,13 @@
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
+<div class="container">
 <!--This page contains a web form to enter the data for the team to edit:-->
 <div>
     <th:block th:insert="Supplement.html :: header"></th:block>
 </div>
 
+    <div class="userInput">
 <form method="post" th:action="@{/processEdit}" th:object="${editedTeam}">
     <table>
         <input value="0" type="hidden" th:field="*{teamID}">
@@ -33,7 +35,9 @@
         </tr>
     </table>
 </form>
+    </div>
 
 <footer th:replace="Supplement.html :: footer"></footer>
+</div>
 </body>
 </html>

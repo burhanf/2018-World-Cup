@@ -6,6 +6,7 @@
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
+<div class="container">
 <div>
     <th:block th:insert="Supplement.html :: header"></th:block>
 </div>
@@ -42,9 +43,10 @@
 <input id="editSearchBox" type="text" placeholder="Enter a team or continent">
 
 
+
+
+</div>
 <footer th:replace="Supplement.html :: footer"></footer>
-
-
 <script>
     //JavaScript for the dynamic search box
     /*user can search for a team (country) or teams in a specific continent using its
