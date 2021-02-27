@@ -7,42 +7,42 @@
 </head>
 <body>
 <div class="container">
-<div>
-    <th:block th:insert="Supplement.html :: header"></th:block>
-</div>
+    <div>
+        <th:block th:insert="Supplement.html :: header"></th:block>
+    </div>
 
-<table class="displayTeams">
-    <tr class="columnInfo">
-        <td>Team ID</td>
-        <td>Team (Country)</td>
-        <td>Continent</td>
-        <td>Played</td>
-        <td>Won</td>
-        <td>Drawn</td>
-        <td>Lost</td>
-        <td>Points</td>
-    </tr>
-
-    <th:block th:each="t:${teams}">
-        <tr class="teamData">
-            <td th:text="${t.teamID}" ></td>
-            <td th:text="${t.teamName}" ></td>
-            <td th:text="${t.continent}" ></td>
-            <td th:text="${t.played}" ></td>
-            <td th:text="${t.won}" ></td>
-            <td th:text="${t.drawn}" ></td>
-            <td th:text="${t.lost}" ></td>
-            <td th:text="${t.calculatePoints()}" ></td>
-            <!--Reference: https://www.w3schools.com/jsref/met_win_confirm.asp-->
-            <td><a th:href="@{'deleteTeamById/' + ${t.teamID}}" onclick="return confirm('Please confirm that you would like to delete this record')">DELETE</a></td>
+    <table class="displayTeams">
+        <tr class="columnInfo">
+            <td>Team ID</td>
+            <td>Team (Country)</td>
+            <td>Continent</td>
+            <td>Played</td>
+            <td>Won</td>
+            <td>Drawn</td>
+            <td>Lost</td>
+            <td>Points</td>
         </tr>
-    </th:block>
-</table>
+
+        <th:block th:each="t:${teams}">
+            <tr class="teamData">
+                <td th:text="${t.teamID}"></td>
+                <td th:text="${t.teamName}"></td>
+                <td th:text="${t.continent}"></td>
+                <td th:text="${t.played}"></td>
+                <td th:text="${t.won}"></td>
+                <td th:text="${t.drawn}"></td>
+                <td th:text="${t.lost}"></td>
+                <td th:text="${t.calculatePoints()}"></td>
+                <!--Reference: https://www.w3schools.com/jsref/met_win_confirm.asp-->
+                <td><a th:href="@{'deleteTeamById/' + ${t.teamID}}"
+                       onclick="return confirm('Please confirm that you would like to delete this record')">DELETE</a>
+                </td>
+            </tr>
+        </th:block>
+    </table>
 
 
-<input id="editSearchBox" type="text" placeholder="Enter a team or continent">
-
-
+    <input id="editSearchBox" type="text" placeholder="Enter a team or continent">
 
 
 </div>
@@ -54,30 +54,29 @@
      */
 
     //use javascript once the DOM is loaded
-    window.addEventListener("DOMContentLoaded", function(){
+    window.addEventListener("DOMContentLoaded", function () {
 
         //store the search box in a var
-        var searchBox = document.getElementById("editSearchBox");
+        let searchBox = document.getElementById("editSearchBox");
 
         //store all tr in a var array
-        var tableRows = document.getElementsByClassName("teamData"); //[]
+        let tableRows = document.getElementsByClassName("teamData"); //[]
 
         //add event to the search box
-        searchBox.addEventListener("input", function(){
+        searchBox.addEventListener("input", function () {
             //callback function since its only being executed once
             //iterate thru the array and check if it contains the search
-            for (i = 0; i < tableRows.length; i++){
+            for (i = 0; i < tableRows.length; i++) {
                 //store the table data in a variable for easier reading
-                //todo lowercase for case sensitive
-                var teamNameData = tableRows[i].getElementsByTagName("td")[1].textContent.toLowerCase(); //team name is index 1 of the td
-                var continentData = tableRows[i].getElementsByTagName("td")[2].textContent.toLowerCase(); //team name is index 2 of the td
+                //lowercase for case sensitive
+                let teamNameData = tableRows[i].getElementsByTagName("td")[1].textContent.toLowerCase(); //team name is index 1 of the td
+                let continentData = tableRows[i].getElementsByTagName("td")[2].textContent.toLowerCase(); //team name is index 2 of the td
 
                 //check if the current tableRow td[1] or [2] which is team name or continent starts with the user search query
-                if ( (teamNameData.startsWith( searchBox.value.toString().toLowerCase() ) ) ||
-                    continentData.startsWith( searchBox.value.toString().toLowerCase() )){
+                if ((teamNameData.startsWith(searchBox.value.toString().toLowerCase())) ||
+                    continentData.startsWith(searchBox.value.toString().toLowerCase())) {
                     tableRows[i].style.display = ""; //leave it visible
-                }
-                else{
+                } else {
                     //if not, display=none
                     tableRows[i].style.display = "none";
                 }

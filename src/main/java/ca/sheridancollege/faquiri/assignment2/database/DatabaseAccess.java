@@ -9,16 +9,16 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-//39.00 2/5/21
 @Repository
 public class DatabaseAccess {
 
+    //global vars so we dont have to define multiple times
     @Autowired
     NamedParameterJdbcTemplate jdbc;
-    //1.05
+
     MapSqlParameterSource namedParameters = new MapSqlParameterSource();
 
-    //CREATE: add team
+    //CREATE
     public void addTeam(Team newTeam){
         String query = "INSERT INTO Teams (TeamName, Continent, Played, Won, Drawn, Lost) VALUES (:name, :continent, :gamesPlayed, :wins, :draws, :losses)";
 
@@ -34,7 +34,7 @@ public class DatabaseAccess {
 
     }
 
-    //READ: get teams query, greabs all of the teams
+    //READ: get teams query, grabs all of the teams depending on choice
     public List<Team> getTeams( int sortChoice){
         String query = "";
         switch (sortChoice){

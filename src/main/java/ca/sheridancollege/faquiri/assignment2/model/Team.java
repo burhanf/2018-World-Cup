@@ -10,6 +10,7 @@ import java.io.Serializable;
 @RequiredArgsConstructor
 @NoArgsConstructor
 
+//Java bean = NoArgConstructor, Serializable and getters/setters (which is done through @Data)
 public class Team implements Serializable {
     private Long teamID;
     @NonNull
@@ -22,6 +23,7 @@ public class Team implements Serializable {
     private int lost;
 
 
+    //points calculation will be a method
     public int calculatePoints(){
         return ( 3 * won) + drawn;
     }

@@ -31,29 +31,19 @@
 </div>
 
 <script>
-    window.addEventListener("DOMContentLoaded", function (){
-       //attach a click event to the trophy image
-       let trophy = document.getElementById("trophy");
-       var imageNumber;
-       //var imageNumberArray = [0,1,2,3,4,5,6,7,8,9];
+    window.addEventListener("DOMContentLoaded", function () {
+        //attach a click event to the trophy image
+        let imageNumber;
 
-       //store the gallery in a var
-        var gallery = document.getElementById("galleryImage");
-       document.images[0].addEventListener("click", function (){
-           console.log("click");
-           //choose a random number to change the image source\
-           imageNumber = Math.floor(Math.random() * 13);
-
-           console.log(imageNumber);
-
-           //todo take the current image out of the array so its not chosen again
-           // var tempArray = [...imageNumberArray];
-           // tempArray.splice(imageNumber, 1);
-
-           gallery.src = "images/" + imageNumber + ".jpeg";
+        //store the gallery in a var
+        let gallery = document.getElementById("galleryImage");
+        document.images[0].addEventListener("click", function () {
+            //choose a random number to change the image source\
+            imageNumber = Math.floor(Math.random() * 13);
+            gallery.src = "images/" + imageNumber + ".jpeg";
 
 
-       });
+        });
     });
 </script>
 </body>
